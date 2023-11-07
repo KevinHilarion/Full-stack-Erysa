@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+	<!-- Logo -->
+	<link rel="icon" href="./img/CreacionesErysa.png" />
+	<!-- Logo -->
+
+
+	<!--Title-->
+	<title>Creaciones Erysa - Prueba</title>
+	<!--Title-->
+
+	<!--CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+	<link rel="stylesheet" href="./css/SlideMenu.css" />
+	<link rel="stylesheet" href="./css/dashboard.css" />
+	<!--CSS-->
+
+</head>
+
+<body>
+
+	<!--JavaScript-->
+	<script src="./js/SlideMenu.js"></script>
+	<!--JavaScript-->
+
+	<!--NAV-->
+	<header>
+		<div class="DivNav">
+			<nav>
+				<ul class="menuItems">
+					<img title="Inspirando ternura" src="./img/CreacionesErysa.png" class="LogoNav" />
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<!--NAV-->
+	
+	<!--Slide - Menu-->
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a title="Ir a la pagina principal" th:href="@{/index}">Inicio</a>
+		<a style="cursor:pointer;"  sec:authorize="isAuthenticated()" title="Cerrar Sesion 🏃" th:href="@{/logout}">Cerrar sesión</a>
+	</div>
+
+	<div class="Menu">
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú</span>
+	</div>
+	<!--Slide - Menu-->
+	
+	<!--Title-->
+	<h1>Administrador</h1>
+	<!--Title-->
+
+
+	<!--Cards-->
+	<div class="ag-format-container">
+		<div class="ag-courses_box">
+			<div class="ag-courses_item">
+				<a th:href="@{usuarios}" class="ag-courses-item_link">
+					<div class="ag-courses-item_bg"></div>
+
+					<div class="ag-courses-item_title">
+						Usuarios <i class="fa-solid fa-user"></i>
+					</div>
+					<div class="ag-courses-item_date-box">
+						Todos los usuarios registrados en la pagina
+					</div>
+				</a>
+			</div>
+
+			<div class="ag-courses_item">
+				<a th:href="@{categorias}" class="ag-courses-item_link">
+					<div class="ag-courses-item_bg"></div>
+
+					<div class="ag-courses-item_title">
+						Categorias <i class="fa-solid fa-list-ul"></i>
+					</div>
+					<div class="ag-courses-item_date-box">
+						Administra las categorias de los productos
+					</div>
+				</a>
+			</div>
+
+			<div class="ag-courses_item">
+				<a href="#" class="ag-courses-item_link">
+					<div class="ag-courses-item_bg"></div>
+
+					<div class="ag-courses-item_title">
+						Ventas <i class="fa-solid fa-comments-dollar"></i>
+					</div>
+					<div class="ag-courses-item_date-box">
+						Ten datos más detallados de las ventas que has realizado
+					</div>
+				</a>
+			</div>
+
+			<div class="ag-courses_item">
+				<a th:href="@{listar}" class="ag-courses-item_link">
+					<div class="ag-courses-item_bg"></div>
+
+					<div class="ag-courses-item_title">
+						Productos <i class="fa-solid fa-bookmark"></i>
+					</div>
+					<div class="ag-courses-item_date-box">
+						Gestiona los productos de tu empresa
+					</div>
+				</a>
+			</div>
+
+			<div class="ag-courses_item">
+				<a th:href="@{cursos}" class="ag-courses-item_link">
+					<div class="ag-courses-item_bg"></div>
+
+					<div class="ag-courses-item_title">
+						Cursos <i class="fa-solid fa-book-bookmark"></i>
+					</div>
+					<div class="ag-courses-item_date-box">
+						Edita / Elimina / Agrega nuevos cursos
+					</div>
+				</a>
+			</div>
+
+			<div class="ag-courses_item">
+				<a th:href="@{index}" class="ag-courses-item_link">
+					<div class="ag-courses-item_bg"></div>
+
+					<div class="ag-courses-item_title">
+						Página de inicio <i class="fa-solid fa-house"></i>
+					</div>
+					<div class="ag-courses-item_date-box">
+						Vuelve a la página principal
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!--Cards-->
+
+</body>
+
+</html>

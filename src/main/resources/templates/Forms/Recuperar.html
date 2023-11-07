@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+	<!-- Logo -->
+	<link rel="icon" href="../IMG/padlock.png" />
+	<!-- Logo -->
+
+
+	<!--Title-->
+	<title>Creaciones Erysa - Restablecer contraseña </title>
+	<!--Title-->
+
+	<!--CSS-->
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+	<link th:href="@{/css/Forgot.css}" rel="stylesheet" />
+	<!--CSS-->
+
+</head>
+
+<body>
+
+	<!--JavaScript-->
+	<script src="/js/LogIn.js"></script>
+	<script src="/js/InicioSesion.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<!--JavaScript-->
+	
+	<div class="bg">
+
+
+	</div>
+	
+	<!--Alert-->
+	<div th:if="${error != null}" class="alert alert-danger d-flex align-items-center" role="alert"
+		style="z-index: 100;">
+		<img src="/IMG/warning.png" style="margin-top: -3%;" /> &nbsp &nbsp
+		<div>
+			<center></center>
+			<p class="text-danger" style="text-align: center;">[[${error}]]</p>
+		</div>
+	</div>
+	<!--Alert-->
+	
+	
+	<!--Formulario-->
+
+	<div class="login-root">
+		<div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+			<div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+				<!--Name-->
+				<div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+					<h1><a href="http://blog.stackfindover.com/" rel="dofollow">Creaciones Erysa</a></h1>
+				</div>
+				<!--Name-->
+				<div class="formbg-outer">
+					<div class="formbg">
+						<div class="formbg-inner padding-horizontal--48">
+							<center><span class="padding-bottom--15"><b>Restablecer Contraseña </b></span></center>
+							<form id="stripe-login" th:action="@{/forgot_password}" method="POST">
+
+								<p style="text-align:center">
+									Ingrese la dirección de correo electrónico verificada de tu cuenta de
+									usuario y le enviaremos un enlace para restablecer la contraseña
+								</p><br>
+
+								<!--Email-->
+								<div class="field padding-bottom--24">
+									<label for="email">Correo</label>
+									<input type="email" for="username" id="email" name="email" required
+										autofocus="autofocus">
+								</div>
+								<!--Email-->
+
+								<!--Buttom-->
+								<div class="field padding-bottom--24">
+								<a onclick="recuperar()">
+									<input type="submit" name="submit" th:href="@{/login}" value="Continuar">
+								</a>
+								</div>
+								<!--Buttom-->
+
+							</form>
+						</div>
+					</div>
+
+					<!--Other-->
+					<div class="footer-link padding-top--24">
+						<span>¿Quieres iniciar sesión? <a th:href="@{/login}">Inicia sesión</a></span>
+					</div>
+					<!--Other-->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Formulario-->
+
+
+</body>
+
+
+
+</html>

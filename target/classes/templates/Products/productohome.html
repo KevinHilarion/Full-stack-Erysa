@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Logo -->
+	<link rel="icon" href="/img/ver.png" />
+	<!-- Logo -->
+
+	<!--Title-->
+	<title th:text="'Detalles del producto ' + ' ' + ${producto.nombre}"></title>
+	<!--Title-->
+
+	<!--CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	<link th:href="@{/css/ProductDetail.css}" rel="stylesheet" />
+
+	<!--CSS-->
+
+</head>
+
+<body>
+
+	<!--JavaScript-->
+	<script src="/js/NoTeVayas.js"></script>
+	<script src="/js/ContactUs.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+	<!--JavaScript-->
+
+	<!--LogOut-->
+	<script>
+		function Cerrar() {
+			var resultado = window.confirm('¿Estás seguro?');
+			if (resultado === true) {
+				window.alert('Okay, si estás seguro.');
+			} else {
+				return false
+			}
+		}
+	</script>
+	<!--LogOut-->
+
+	<!--Header-->
+	<header>
+		<img title="Inspirando ternura" src="../img/CreacionesErysa.png" class="LogoNav" />
+	</header>
+	<!--Header-->
+
+	<!--NAV-->
+	<div class="navs">
+		<input type="checkbox" id="navs-check">
+
+		<div class="navs-btn">
+			<label for="navs-check">
+				<i class="fa-solid fa-bars fa-lg"></i>
+			</label>
+		</div>
+
+		<div class="navs-links">
+			<a th:href="@{/index}" title="Ir al inicio">Inicio
+				<i class="fa-solid fa-house"></i></a>
+
+			<a th:href="@{/index-curso}" title="Tus cursos 🏷">Cursos
+				<i class="fa-solid fa-book"></i></a>
+
+			<a title="Productos guardados 🛒">Carrito
+				<i class="fa-brands fa-opencart"></i></a>
+
+			<a title="Escribenos 📞" th:onclick="mensaje()">
+				Contactanos <i class="fa-solid fa-mobile fa-shake"></i></a>
+
+			<a th:href="@{/login}" sec:authorize="isAnonymous()" title="Iniciar sesión" style="float: right;">
+				<i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+
+			<a title="Administra tu negocio" sec:authorize="hasAuthority('Administrador')" th:href="@{/dashboard}">
+				Administrar <i class="fa-solid fa-square-poll-vertical"></i></a>
+
+			<a title="Usuario actual 👤" sec:authorize="isAuthenticated()" sec:authentication="principal.username"></a>
+
+			<a th:href="@{/logout}" title="Cerrar Sesion 🏃" sec:authorize="isAuthenticated()" th:onclick="Cerrar()">
+				<i class="fa-solid fa-power-off"></i></a>
+		</div>
+	</div>
+	<!--NAV-->
+
+
+	<br>
+
+	<!--Content-->
+	<div class="container py-4">
+		<div class="card bg-light">
+			<center>
+				<h1 class="card-header" th:text="${titulo}"></h1>
+			</center>
+		</div>
+		<div class="card-body">
+			<form th:action="@{/cart}" method="POST">
+				<input type="hidden" th:value="${producto.id}" name="id">
+				<img Class="img-thumbnail rounded float-left" th:src="@{'/img/' + ${producto.imagen}}"
+					th:alt="${producto.imagen}" style="max-width: 30%;">
+				<ul class="list-group">
+					<b>
+						<li style="background-color: #E27DE2;color:white;" class="list-group-item "
+							th:text="'Nombre: ' + ${producto.nombre}"></li>
+					</b>
+					<li class="list-group-item" th:text="'Precio: ' + ${producto.precio}"></li>
+					<li class="list-group-item" th:text="'Stock: ' + ${producto.stock}"></li>
+					<li class="list-group-item" th:text="'Descripción: ' + ${producto.descripcion}"></li>
+					<li class="list-group-item" th:text="'Categoria: ' + ${producto.categoria.nombre}"></li>
+					<li class="list-group-item">Cantidad: <input type="number" id="cantidad" name="cantidad"
+							autocomplete="off" min="1" max="5" value="1"></li>
+
+				</ul>
+			</form>
+		</div>
+	</div>
+	</div>
+
+	<!--Botones-->
+	<center>
+		<div class="box-footer">
+			<a th:href="@{/index}">
+				<Button class="button-30" title="Regresar a productos">
+					<i class="fa-solid fa-arrow-up fa-rotate-270"></i></Button>
+			</a>
+		</div>
+	</center>
+	<!--Botones-->
+
+
+	<!--Content-->
+
+</body>
+
+</html>

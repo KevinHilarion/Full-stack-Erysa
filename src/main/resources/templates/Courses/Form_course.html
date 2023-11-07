@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Logo -->
+	<link rel="icon" href="/img/edit.png" />
+	<!-- Logo -->
+
+	<!--Title-->
+	<title>Productos - Formulario</title>
+	<!--Title-->
+
+	<!--CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="/css/CoursesCSS/FormCourse.css" />
+	<link rel="stylesheet" href="/css/SlideMenu.css" />
+	<!--CSS-->
+
+</head>
+
+<body>
+
+	<!--JavaScript-->
+	<script src="/js/SlideMenu.js"></script>
+	<script src="/js/AlertProduct.js"></script>
+	<script src="/js/validar.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<!--JavaScript-->
+
+	<!--NAV-->
+	<div class="DivNav">
+		<nav>
+			<ul class="menuItems">
+				<img title="Inspirando ternura" src="/img/CreacionesErysa.png" class="LogoNav" />
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<!--NAV-->
+
+	<!--Slide - Menu-->
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a title="Ir a la página principal" th:href="@{/index}">Inicio</a>
+		<a title="Ir a la página de administrador" th:href="@{/dashaboard}">Administrar</a>
+		<a title="Ir a productos" th:href="@{/usuarios}">Usuarios</a>
+		<a title="Ir a productos" th:href="@{/listar}">Productos</a>
+		<a title="Dirigete a categorias" th:href="@{/categorias}">Categorias</a>
+		<a title="Ir a cursos" th:href="@{/cursos}">Cursos</a>
+		<a style="cursor:pointer;" sec:authorize="isAuthenticated()" title="Cerrar Sesion 🏃"
+			th:href="@{/logout}">Cerrar sesión</a>
+	</div>
+
+	<div class="Menu">
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú</span>
+	</div>
+	<!--Slide - Menu-->
+
+	<br>
+
+	<!--Content-->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" id="formulario">
+				<h1 class="text-center" th:text="${titulo}"></h1>
+				<div class="card-body">
+					<form th:action="@{/formulario_curso}" th:object="${curso}" method="post"
+						enctype="multipart/form-data">
+						<input type="hidden" th:field="*{id_Curso}" th:value="${curso.id_Curso}" />
+						<!--Fila 1-->
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label>Titulo : </label>
+								<input type="text" th:field="*{Titulo}" class="form-control"
+									th:errorclass="'form-control alert-danger'"
+									th:onkeypress="return SoloLetras(event);" required
+									placeholder="Escribe el nombre del curso" />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('Titulo')}"
+									th:errors="*{Titulo}"></small>
+							</div>
+							<div class="form-group col-md-6">
+								<label>Precio : </label>
+								<input type="text" th:field="*{Precio}" class="form-control"
+									th:errorclass="'form-control alert-danger'"
+									th:onkeypress="return SoloNumeros(event);" placeholder="Precio mayor a 0"
+									required />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('Precio')}"
+									th:errors="*{precio}"></small>
+							</div>
+						</div>
+						<!--Fila 1-->
+
+						<!--Fila 2-->
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label>Cantidad Videos : </label>
+								<input id="0" th:onkeypress="return SoloNumeros(event);" type="text"
+									name="Cantidad_videos" th:field="*{Cantidad_videos}" class="form-control"
+									placeholder="Cantidad mayor a 0 " required title="Debe ser mayor a 0">
+							</div>
+							<div class="form-group col-md-6">
+								<label>Descripcion : </label>
+								<input type="text" th:field="*{Descripcion}" class="form-control"
+									th:errorclass="'form-control alert-danger'"
+									th:onkeypress="return SoloLetras(event);" required textarea />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('Descripcion')}"
+									th:errors="*{descripcion}"></small>
+							</div>
+						</div>
+						<!--Fila 2-->
+
+						<!--Fila 3-->
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label>Miniatura : </label>
+								<input type="file" name="file" class="form-control" id="Miniatura"
+									accept=".jpg, .jpeg, .png" />
+								<small class="form-text text-danger" th:if="${#fields.hasErrors('Miniatura')}"></small>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label>Duracion : </label>
+									<input id="0" th:onkeypress="return SoloNumeros(event);" type="text"
+										name="Duracion" th:field="*{Duracion}" class="form-control"
+										placeholder="Cantidad mayor a 0 " required title="Debe ser mayor a 0">
+								</div>
+							</div>
+							<!--Fila 3-->
+							<br>
+
+							<!--Botones-->
+							<center>
+								<div style=" display: inline-block;padding-left: 130px;">
+									<Button type="reset" class="button-30" title="Limpiar formulario">
+										Limpiar &nbsp; <i class="fa-solid fa-delete-left"></i></Button>
+								</div>
+
+								<div style=" display: inline-block;">
+									<Button type="submit" value="" class="button-30" title="Confirmar los datos"
+										th:onclick="ConfirmarC()">
+										Guardar &nbsp;<i class="fa-regular fa-floppy-disk"></i></Button>
+								</div>
+							</center>
+							<!--Botones-->
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Content-->
+
+	<!--Positivos-->
+	<script>
+		const campoNumerico = document.getElementById('0');
+
+		campoNumerico.addEventListener('keydown', function (evento) {
+			const teclaPresionada = evento.key;
+
+			const comienzaPorCero =
+				campoNumerico.value.length === 0 &&
+				teclaPresionada == 0;
+
+			if (comienzaPorCero) {
+				evento.preventDefault();
+			}
+
+		});
+	</script>
+
+
+	<!--Positivos-->
+
+</body>
+
+</html>

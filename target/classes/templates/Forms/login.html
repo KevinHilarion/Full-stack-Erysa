@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+	<!-- Logo -->
+	<link rel="icon" href="../IMG/login.png" />
+	<!-- Logo -->
+
+
+	<!--Title-->
+	<title>Creaciones Erysa - Iniciar Sesión </title>
+	<!--Title-->
+
+	<!--CSS-->
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+	<link th:href="@{/css/LogIn.css}" rel="stylesheet" />
+	<!--CSS-->
+	
+	<style>
+		.password-icon {
+			float: right;
+			position: relative;
+			margin: -30px 10px 0 0;
+			cursor: pointer;
+
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+	<!--JavaScript-->
+	<script src="/js/LogIn.js"></script>
+	<!--JavaScript-->
+	
+	<!--Validación-->
+
+	<script>
+		window.addEventListener("load", function () {
+
+			// icono para mostrar contraseña
+			showPassword = document.querySelector('.show-password');
+			showPassword.addEventListener('click', () => {
+
+				// elementos input de tipo clave
+				password1 = document.querySelector('.password1');
+				password2 = document.querySelector('.password2');
+
+				if (password1.type === "text") {
+					password1.type = "password"
+					password2.type = "password"
+					showPassword.classList.remove('fa-eye-slash');
+				} else {
+					password1.type = "text"
+					password2.type = "text"
+					showPassword.classList.toggle("fa-eye-slash");
+				}
+
+			})
+
+		});
+	</script>
+	<!--Validación-->
+	
+	
+	<div class="bg">
+
+
+	</div>
+	
+	<!--Formulario-->
+
+	<div class="login-root">
+		<div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+			<!--Alertas-->
+			<div style="z-index:7;">
+				<center>
+					<div id="alert1" role="alert" th:if=${param.logout}>
+						<div style="color:#fff"><i class="fa-solid fa-circle-check fa-beat-fade" style="color:#fff"></i>
+							Has cerrado tu sesión de manera exitosa.
+						</divstyle="color:#fff">
+				</center>
+				<center>
+					<div id="alert2" role="alert" th:if=${param.error} >
+						<div style="color:#fff"><i style="color:#fff" class="fa-solid fa-triangle-exclamation fa-fade" ></i>
+							Tus credenciales para iniciar sesión están digitadas de manera incorrecta o no has creado
+							una
+							cuenta en nuestra página.
+						</div>
+				</center>
+			</div>
+			<!--Alertas-->
+
+			<div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+				<!--Name-->
+				<div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+					<h1><a href="http://blog.stackfindover.com/" rel="dofollow">Creaciones Erysa</a></h1>
+				</div>
+				<!--Name-->
+				<div class="formbg-outer">
+					<div class="formbg">
+						<div class="formbg-inner padding-horizontal--48">
+							<center><span class="padding-bottom--15"><b>Iniciar sesión</b></span></center>
+							<form id="stripe-login" th:action="@{/login}" method="post">
+								<!--Email-->
+								<div class="field padding-bottom--24">
+									<label for="email">Correo</label>
+									<input type="email" for="username" id="username" name="username" required
+										autofocus="autofocus">
+								</div>
+								<!--Email-->
+
+								<!--Password-->
+								<div class="field padding-bottom--24">
+									<div class="grid--50-50">
+										<label for="password">Contraseña</label>
+									</div>
+									<input type="password" id="p" name="password" required autofocus="autofocus" class="form-control password1">
+									<span class="fa fa-fw fa-eye password-icon show-password"></span>
+								</div>
+								<!--Password-->
+
+								<!--Buttom-->
+								<div class="field padding-bottom--24">
+									<input type="submit" name="submit" value="Continuar" title="Da clic para iniciar sesión en la mejor pagina de muñecas">
+								</div>
+								<!--Buttom-->
+
+							</form>
+							<!--Forgot-->
+							<div class="reset-pass" >
+								<a th:href="@{/Recuperar}" style="color: #F28DBC;">¿Olvidó contraseña?</a>
+							</div>
+							<!--Forgot-->
+						</div>
+					</div>
+
+					<!--Other-->
+					<div class="footer-link padding-top--24">
+						<span>¿No tienes una cuenta? <a th:href="@{/registro}">Regístrate</a></span>
+						<div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
+							<span><a href="#">© Creaciones Erysa</a></span>
+							<span><a href="#">Contacto</a></span>
+							<span><a href="#">Privacidad & terminos</a></span>
+						</div>
+					</div>
+					<!--Other-->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Formulario-->
+
+
+</body>
+
+
+
+</html>

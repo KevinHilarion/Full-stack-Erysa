@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+	<!-- Logo -->
+	<link rel="icon" href="./img/CreacionesErysa.png" />
+	<!-- Logo -->
+
+
+	<!--Title-->
+	<title>Creaciones Erysa </title>
+	<!--Title-->
+
+	<!--CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="./css/styles.css" />
+	<!--CSS-->
+
+</head>
+
+<body>
+
+	<!--LogOut-->
+	<script>
+		function Cerrar() {
+			var resultado = window.confirm('¿Estás seguro?');
+			if (resultado === true) {
+				window.alert('Okay, si estás seguro.');
+			} else {
+				return false
+			}
+		}
+	</script>
+	<!--LogOut-->
+
+	<!--JavaScript-->
+	<script src="/js/NoTeVayas.js"></script>
+	<script src="/js/ContactUs.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+	<!--JavaScript-->
+
+	<!--Header-->
+	<header>
+		<img title="Inspirando ternura" src="./img/CreacionesErysa.png" class="LogoNav" />
+	</header>
+	<!--Header-->
+
+
+	<div class="containers">
+
+		<!--NAV-->
+		<center>
+		<div class="navs">
+			<input type="checkbox" id="navs-check">
+
+			<div class="navs-btn">
+				<label for="navs-check">
+					<i class="fa-solid fa-bars fa-lg"></i>
+				</label>
+			</div>
+			
+			
+			<div class="navs-links">
+				<a title="Ir al inicio">Inicio
+					<i class="fa-solid fa-house"></i></a>
+
+				<a th:href="@{/index-curso}" title="Tus cursos 🏷">Cursos
+					<i class="fa-solid fa-book"></i></a>
+
+				<a title="Productos guardados 🛒">Carrito
+					<i class="fa-brands fa-opencart"></i></a>
+
+				<a title="Escribenos 📞" th:onclick="mensaje()">
+					Contactanos <i class="fa-solid fa-mobile fa-shake"></i></a>
+
+				<a th:href="@{/login}" sec:authorize="isAnonymous()" title="Iniciar sesión" style="float: right;">
+					<i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+
+				<a title="Administra tu negocio" sec:authorize="hasAuthority('Administrador')" th:href="@{/dashboard}">
+					Administrar <i class="fa-solid fa-square-poll-vertical"></i></a>
+
+				<a title="Usuario actual 👤" sec:authorize="isAuthenticated()"
+					sec:authentication="principal.username"></a>
+
+				<a th:href="@{/logout}" title="Cerrar Sesion 🏃" sec:authorize="isAuthenticated()"
+					th:onclick="Cerrar()">
+					<i class="fa-solid fa-power-off"></i></a>
+			</div>
+		</div>
+		<!--NAV-->
+
+
+		<!--Multimedia-->
+		<center>
+			<div style="margin-top: 2%;">
+				<input type="radio" name="position" checked />
+				<input type="radio" name="position" />
+				<input type="radio" name="position" />
+				<input type="radio" name="position" />
+				<input type="radio" name="position" />
+				<main id="carousel">
+					<div class="item"><img src="./img/Sin-título-2.png"></div>
+					<div class="item"></div>
+					<div class="item"></div>
+					<div class="item"></div>
+					<div class="item"></div>
+					<main>
+			</div>
+		</center>
+		<!--Multimedia-->
+
+		<!--Welcome-->
+		<h1><b>Nosotros</b></h1>
+		<h2>Somos una empresa de costura encargada de la creacion de munecas de trapo
+			las cuales llevan a inspirar <del>ternura </del></h2>
+		<br><br><br><br><br><br>
+		<!--Welcome-->
+
+		<!-- Card -->
+		<h1><b>Nuestros productos</b></h1>
+		<div class="row text-center">
+			<div class="col-lg-4 col-md-6 mb-4" th:each="producto: ${productos}">
+				<div class="">
+					<div class="nft">
+						<div class='main'>
+							<center><img class='tokenImage' th:src="@{'/img/' + ${producto.imagen}}"
+									th:alt="${producto.imagen}"></center>
+							<br>
+							<h2 th:text="${producto.nombre}" style="font-weight: bold;"></h2>
+							<hr />
+							<div class='creator'>
+								<br><br>
+								<a style="margin-left: 50px;"><button class="button-34" style="background: #4F3981"
+										th:text="'$' + ' ' + ${producto.precio}"></button></a>
+
+								<a style="margin-left: 50px;"
+									th:href="@{/productoindex/{id}  (id=${producto.id})  }"><button
+										class="button-34">Ver
+										producto</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Card -->
+
+
+
+		<!--Footer-->
+		<br><br><br><br><br><br>
+	</div>
+	<br>
+	<footer class="footer-distributed">
+
+		<div class="footer-right">
+
+			<a href="#" title="Facebook 💯"><i class="fa-brands fa-facebook-f fa-xl"></i></a>
+			<a href="#" title="Instagram 📸"><i class="fa-brands fa-instagram fa-2xl"></i></i></a>
+			<a href="#" title="Tik Tok 🎵"><i class="fa-brands fa-tiktok fa-xl"></i></a>
+			<a href="#" title="WhatsApp 📲"><i class="fa-brands fa-whatsapp fa-2xl"></i></a>
+
+		</div>
+
+		<div class="footer-left">
+
+			<p class="footer-links">
+				<a class="link-1" href="#">Inicio</a>
+				<a href="#" title="Explora nuesctros cursos 🎀">Cursos</a>
+				<a href="#" title="Nuestras politicas de privacidad">Politicas de seguridad</a>
+				<a href="#" title="Preguntas frecuentes">FAQ</a>
+				<a href="#" title="Llamanos o escribenos para obtener más información 💌">Contacto</a>
+				<a href="#" title="Empresa de sistemas de información para productividad">Nero Code</a>
+			</p>
+			<p>Creaciones Erysa &copy; 2023 &nbsp;- Desarrollado por Nero Code</p>
+		</div>
+
+	</footer>
+	<!--Footer-->
+
+
+</body>
+
+
+
+</html>

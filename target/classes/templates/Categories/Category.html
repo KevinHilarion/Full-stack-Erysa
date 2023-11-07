@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Logo -->
+	<link rel="icon" href="./img/table.png" />
+	<!-- Logo -->
+
+	<!--Title-->
+	<title>Creaciones Erysa - Categorias</title>
+	<!--Title-->
+
+	<!--CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="./css/CategoriesCSS/Category.css" />
+	<link rel="stylesheet" href="./css/SlideMenu.css" />
+	<!--CSS-->
+
+</head>
+
+<body>
+
+	<!--JavaScript-->
+	<script src="./js/SlideMenu.js"></script>
+	<script src="./js/AlertProduct.js"></script>
+	<script src="./js/validar.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<!--JavaScript-->
+
+	<!--NAV-->
+	<header>
+	<div class="DivNav">
+		<nav>
+			<ul class="menuItems">
+				<img title="Inspirando ternura" src="./img/CreacionesErysa.png" class="LogoNav" />
+				</li>
+			</ul>
+		</nav>
+	</div>
+	</header>
+	<!--NAV-->
+
+	<!--Slide - Menu-->
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a title="Ir a la página principal" th:href="@{/index}">Inicio</a>
+		<a title="Ir a la página de administrador" th:href="@{/dashaboard}">Administrar</a>
+		<a title="Ir a productos" th:href="@{/usuarios}">Usuarios</a>
+		<a title="Ir a productos" th:href="@{/listar}">Productos</a>
+		<a title="Dirigete a categorias" th:href="@{/categorias}">Categorias</a>
+		<a title="Ir a cursos" th:href="@{/cursos}">Cursos</a>
+		<a style="cursor:pointer;" sec:authorize="isAuthenticated()" title="Cerrar Sesion 🏃"
+			th:href="@{/logout}">Cerrar sesión</a>
+	</div>
+
+	<div class="Menu">
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú</span>
+	</div>
+	<!--Slide - Menu-->
+
+	<!--Title-->
+	<div class="container2">
+		<h2 class="title">
+			<span class="title-word title-word-1">TABLA</span>
+			<span class="title-word title-word-2">CATEGORIAS</span>
+		</h2>
+	</div>
+	<!--Title-->
+
+	<!--Botones-->
+	<div class="bts">
+		<a th:href="@{/categorias_form}"><button style="width: 40px;" class="button-29" role="button" title="Crear categoria"><i
+		class="fa-solid fa-plus fa-rotate-90 fa-lg" style="color: white;"></i></button></a>
+	</div>
+	<!--Botones-->
+
+
+	<!--Content-->
+	<div class="container">
+
+		<!--Table-->
+		<table class="table table-striped table-hover" >
+			<thead id="ColorT">
+				<tr>
+					<th><center>Nombre</center></th>
+					<th>
+						<center>Acciones</center>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="c : ${categorias}">
+					<td th:text="${c.nombre}" style="text-align:center;"></td>
+
+					<td>
+						<center>
+							<a href="" class="btn btn-success" title="Editar" th:href="@{/Category_form/{id}(id=${c.id})}">
+								<i class="fa-solid fa-pen-to-square" style="color: white;"></i></a>
+						</center>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!--Table-->
+		<nav style="background-color: transparent;" th:replace="paginator-nav :: paginator"></nav>
+	</div>
+	<!--Content-->
+
+	<!--Footer-->
+	<footer class="footer-distributed" style="margin-top: 24vh;">
+		<center>
+			<div class="footer-left">
+
+				<p class="footer-links">
+					<a class="link-1" href="#">Inicio</a>
+					<a href="#" title="Explora nuesctros cursos 🎀">Cursos</a>
+					<a href="#" title="Nuestras politicas de privacidad">Politicas de seguridad</a>
+					<a href="#" title="Preguntas frecuentes">FAQ</a>
+					<a href="#" title="Llamanos o escribenos para obtener más información 💌">Contacto</a>
+					<a href="#" title="Empresa de sistemas de información para productividad">Nero Code</a>
+				</p>
+				<p>Creaciones Erysa &copy; 2023 &nbsp;- Desarrollado por Nero Code</p>
+			</div>
+		</center>
+	</footer>
+	<!--Footer-->
+
+</body>
+
+</html>

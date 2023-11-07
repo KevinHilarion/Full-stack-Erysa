@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1" />
+	<meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Logo -->
+	<link rel="icon" href="/img/edit.png" />
+	<!-- Logo -->
+
+	<!--Title-->
+	<title>Categoria - Nuevo</title>
+	<!--Title-->
+
+	<!--CSS-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="./css/CategoriesCSS/Category_form.css" />
+	<link rel="stylesheet" href="/css/SlideMenu.css" />
+	<!--CSS-->
+
+</head>
+
+<body>
+
+	<!--JavaScript-->
+	<script src="/js/SlideMenu.js"></script>
+	<script src="/js/AlertProduct.js"></script>
+	<script src="/js/validar.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<!--JavaScript-->
+
+	<!--NAV-->
+	<div class="DivNav">
+		<nav>
+			<ul class="menuItems">
+				<img title="Inspirando ternura" src="/img/CreacionesErysa.png" class="LogoNav" />
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<!--NAV-->
+
+	<!--Slide - Menu-->
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a title="Ir a la página principal" th:href="@{/index}">Inicio</a>
+		<a title="Ir a la página de administrador" th:href="@{/dashaboard}">Administrar</a>
+		<a title="Ir a productos" th:href="@{/usuarios}">Usuarios</a>
+		<a title="Ir a productos" th:href="@{/listar}">Productos</a>
+		<a title="Dirigete a categorias" th:href="@{/categorias}">Categorias</a>
+		<a title="Ir a cursos" th:href="@{/cursos}">Cursos</a>
+		<a style="cursor:pointer;" sec:authorize="isAuthenticated()" title="Cerrar Sesion 🏃"
+			th:href="@{/logout}">Cerrar sesión</a>
+	</div>
+
+	<div class="Menu">
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menú</span>
+	</div>
+	<!--Slide - Menu-->
+
+	<br>
+
+	<!--Content-->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card" id="formulario">
+				<h1 class="text-center" th:text="${titulo}"></h1>
+				<div class="card-body">
+					<form th:action="@{/categorias_form}" th:object="${categoria}" method="post"
+						enctype="multipart/form-data">
+						<input type="hidden" th:field="*{id}" th:value="${categoria.id}" />
+						<!--Fila 1-->
+						<label>Nombre : </label>
+						<input type="text" th:field="*{nombre}" class="form-control"
+							th:errorclass="'form-control alert-danger'" th:onkeypress="return SoloLetras(event);"
+							required placeholder="Escribe el nombre del producto" />
+						<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+							th:errors="*{nombre}"></small>
+						<!--Fila 1-->
+						<br>
+						<!--Botones-->
+						<center>
+							<div style=" display: inline-block;">
+								<Button type="reset" class="button-30" title="Limpiar formulario">
+									Limpiar &nbsp; <i class="fa-solid fa-delete-left"></i></Button>
+							</div>
+
+							<div style=" display: inline-block;">
+								<Button type="submit" value="" class="button-30" title="Confirmar los datos"
+									th:onclick="ConfirmarC()">
+									Guardar &nbsp;<i class="fa-regular fa-floppy-disk"></i></Button>
+							</div>
+						</center>
+						<!--Botones-->
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Content-->
+
+</body>
+
+</html>

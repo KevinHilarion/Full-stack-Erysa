@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1" />
+    <meta http-equiv=" X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <!-- Logo -->
+    <link rel="icon" href="../IMG/login.png" />
+    <!-- Logo -->
+
+
+    <!--Title-->
+    <title>Creaciones Erysa - Iniciar Sesión </title>
+    <!--Title-->
+
+    <!--CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <link th:href="@{/css/LogIn.css}" rel="stylesheet" />
+    <!--CSS-->
+
+</head>
+
+<body>
+
+    <!--JavaScript-->
+    <script src="/js/LogIn.js"></script>
+    <!--JavaScript-->
+
+
+
+    <!--Formulario-->
+    <div class="container">
+        <h2 style="text-align: center;">Iniciar Sesión</h2>
+        <form class="user" th:action="@{/login}" method="post">
+            <input type="email" class="email" for="username" id="username" name="username" required
+                autofocus="autofocus" aria-describedby="emailHelp" placeholder="email">
+            <br />
+            <input type="text" class="pwd" for="password" id="password" name="password" required autofocus="autofocus"
+                placeholder="Contraseña">
+        </form>
+        <a href="./Forgot.html" class="link">
+            <strong>¿Olvidó contraseña?</strong>
+        </a>
+        <br />
+
+        <!--Botones-->
+        <button class="signin">
+            <span>Iniciar Sesión</span>
+        </button>
+        <a href="../Formularios/Register.html">
+            <button class="register" style="background-color: #D698C7;">
+                <span>Registrar</span>
+            </button></a>
+        <!--Botones-->
+
+        <h3>your registration is complete ! </h3>
+        <h3>your sign in is complete !</h3>
+        <div class="reg"></div>
+        <div class="sig"></div>
+    </div>
+    <!--Formulario-->
+
+
+</body>
+
+
+
+</html>

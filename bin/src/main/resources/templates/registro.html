@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <!-- Logo -->
+    <link rel="icon" href="../IMG/Register.png" />
+    <!-- Logo -->
+
+
+    <!--Title-->
+    <title>Creaciones Erysa - Registrarse </title>
+    <!--Title-->
+
+    <!--CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <link th:href="@{/css/Register.css}" rel="stylesheet" />
+    <!--CSS-->
+
+</head>
+
+<body>
+
+    <!--JavaScript-->
+    <script src="/js/LogIn.js"></script>
+    <!--JavaScript-->
+
+
+
+    <!--Formulario-->
+    <div class="container">
+        <h2 style="text-align: center;">Registrate</h2>
+        <form class="user" th:action="@{/registro}" method="post" th:object="${usuario}">
+            <br />
+            <input type="text" class="name" for="nombre" id="nombre" th:field="*{nombre}" required autofocus="autofocus"
+                placeholder="Nombre">
+            <br />
+            <input type="text" class="lastname" for="apellido" id="apellido" th:field="*{apellido}" required
+                autofocus="autofocus" placeholder="Apellido">
+            <br />
+            <input type="text" class="number" for="numero_celular" id="numero_celular" th:field="*{numero_celular}"
+                required autofocus="numero_celular" placeholder="Numero_Celular">
+            <br />
+            <input type="text" class="email" for="email" id="email" th:field="*{email}" required autofocus="autofocus"
+                placeholder="email electronico">
+            <br />
+            <input type="text" class="pwd" for="password" id="password" th:field="*{password}" required
+                autofocus="autofocus" placeholder="Contraseña">
+        </form>
+        <br />
+        <button type="submit" class="register">
+            <span>Registrar</span>
+        </button>
+
+        <a href="./LogIn.html">
+            <button class="signin" style="background-color: #D698C7;">
+                <span>Iniciar Sesión</span>
+            </button>
+        </a>
+    
+        <h3>your registration is complete ! </h3>
+        <h3>your sign in is complete !</h3>
+        <div class="reg"></div>
+        <div class="sig"></div>
+    </div>
+    <!--Formulario-->
+
+
+</body>
+
+
+
+</html>

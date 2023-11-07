@@ -1,0 +1,213 @@
+/*GENERAL*/
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kalam:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kalam:wght@300;400&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    font-family: 'Kalam', cursive;
+  }
+
+  *::selection {
+    background: #F28DBC;
+    color: white;
+  }
+
+  
+  
+  body{
+    height:200px;
+    background: rgb(189, 189, 189);
+    background: linear-gradient(to right, #EF75B2, #F28DBC , #EF9AB4, #F5ACC0) ;
+    background-size: 300% 100%;
+    animation: gradient 10s ease infinite;
+    
+  }
+
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  
+  @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+  .container{
+    position:absolute;
+    top:25vh;
+    left:75vh;
+    display:block;
+    margin-bottom:80px;
+    width:500px;
+    height:365px;
+    background:#fff;
+    box-shadow: 2px 2px 3px 2px rgba(0.2, 0.2, 0.7, 0.2);
+    border-radius:10px;
+    overflow:hidden;
+    z-index:1;
+  }
+  
+  h2{
+    padding:40px;
+    text-transform:uppercase;
+    color:#F28DBC;
+  }
+  
+  input{
+    display:block;
+    height:50px;
+    width:90%;
+    margin:0 auto;
+    border:none;
+    &::placeholder{
+      -webkit-transform:translateY(0px);
+        transform:translateY(0px);
+      -webkit-transition:.5s;
+        transition:.5s;
+    }
+    &:hover,
+    &:focus,
+    &:active:focus{
+      color:#F28DBC;
+      outline:none;
+      border-bottom:1px solid #F28DBC;
+      &::placeholder{
+        color:#F28DBC;
+        position:relative;
+        -webkit-transform:translateY(-20px);
+        transform:translateY(-17px);
+        
+      }
+    }
+  }
+  
+  .email,
+  .pwd{
+    position:relative;
+    z-index:1;
+    border-bottom:1px solid rgba(0,0,0,.1);
+    padding-left:20px;
+    text-transform:uppercase;
+    color:#858585;
+    font-weight:lighter;
+    -webkit-transition:.5s;
+    transition:.5s;
+  }
+  
+  
+  
+  .link{
+    text-decoration:none;
+ 
+   
+    text-transform:uppercase;
+    color:#858585;
+    font-weight:lighter;
+    -webkit-transition:.5s;
+    transition:.5s;
+  }
+
+  .link:hover{
+    color: #EDAFF7;
+  }
+  
+  
+  
+  button{
+    cursor:pointer; 
+    display:inline-block;
+    float:left;
+    width:500px;
+    height:60px;
+    margin-top:-10px;
+    border:none;
+    text-transform:uppercase;
+    color:#fff;
+    -webkit-transition:.5s;
+    transition:.5s;
+    &:nth-of-type(1){
+      background:#F28DBC;
+    }
+
+    &:nth-of-type(1):hover, &:nth-of-type(2):hover{
+        background:#EDAFF7;
+      }
+    &:nth-of-type(2){
+      background:#D698C7;
+    }
+   
+    span{
+      position:absolute;
+      display:block;
+      margin:-10px 20%;
+      -webkit-transform:translateX(0);
+      transform:translateX(0);
+      -webkit-transition:.5s;
+      transition:.5s;
+    }
+    &:hover{
+      span{
+        -webkit-transform:translateX(30px);
+        transform:translateX(30px);
+        }
+     }
+  }
+  
+  .reg{
+      position:absolute;
+      top:0;
+      left:0;
+      -webkit-transform:translateY(-100%) scale(1);
+      transform:translateY(-100%) scale(1);
+      display:block;
+      width:20px;
+      height:20px;
+      border-radius:50px;
+      background:#673ab7;
+      z-index:5;
+      -webkit-transition:.8s ease-in-out;
+      transition:.8s ease-in-out;
+    }
+  
+  
+  
+  .sig{
+     position:absolute;
+     top:0;
+     right:0;
+     -webkit-transform:translateY(-100%) scale(1);
+     transform:translateY(-100%) scale(1);
+     display:block;
+     width:20px;
+     height:20px;
+     display:block;
+     background:#ff5722;
+     z-index:5;
+     -webkit-transition:.8s ease-in-out;
+      transition:.8s ease-in-out;
+  }
+  
+  h3{
+    position:absolute;
+    top:-100%;
+    left:20%; 
+    text-transform:uppercase;
+    font-weight:bolder;
+    color:rgba(255,255,255,.3);
+    -webkit-transition:.3s ease-in-out 1.2s;
+    transition:.3s ease-in-out 1.2s;
+  }
+  
+  
